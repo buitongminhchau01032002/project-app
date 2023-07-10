@@ -51,6 +51,25 @@
                     <tbody
                         class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900"
                     >
+                        <tr *ngIf="projects.length === 0">
+                            <td
+                                colspan="6"
+                                class="align-middle text-center py-4"
+                            >
+                                <div
+                                    class="flex flex-col items-center space-y-3"
+                                >
+                                    <p>Don't have any project!</p>
+                                    <a
+                                        class="px-3 py-2 bg-violet-600 text-white font-semibold text-sm rounded-md hover:bg-violet-500 cursor-pointer"
+                                        routerLink="/create"
+                                    >
+                                        Add project
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+
                         <tr *ngFor="let project of projects; let i = index">
                             <td
                                 class="max-w-[250px] hover:text-violet-700 font-medium text-gray-700 whitespace-nowrap"
@@ -97,7 +116,7 @@
                             >
                                 {{ project.description }}
                             </td>
-                            <td class="px-4 py-4 whitespace-nowrap">
+                            <td class="w-[135px] px-4 py-4 whitespace-nowrap">
                                 <div class="flex items-center gap-x-6">
                                     <a
                                         [routerLink]="['/edit', i]"

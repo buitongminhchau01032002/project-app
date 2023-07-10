@@ -10,7 +10,7 @@ import { Project } from '../project.model';
 })
 export class ProjectListComponent implements OnInit, OnDestroy {
     projects: Project[];
-    idToDelete!: number;
+    idToDelete?: number;
     private subscription: Subscription;
 
     constructor(private projectService: ProjectService) {}
