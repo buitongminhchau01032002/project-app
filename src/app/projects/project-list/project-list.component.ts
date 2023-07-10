@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ProjectService } from '../project.service';
 import { Project } from '../project.model';
@@ -8,8 +8,9 @@ import { Project } from '../project.model';
     templateUrl: './project-list.component.html',
     styleUrls: ['./project-list.component.css'],
 })
-export class ProjectListComponent implements OnInit {
+export class ProjectListComponent implements OnInit, OnDestroy {
     projects: Project[];
+    idToDelete!: number;
     private subscription: Subscription;
 
     constructor(private projectService: ProjectService) {}
@@ -21,5 +22,19 @@ export class ProjectListComponent implements OnInit {
             },
         );
         this.projects = this.projectService.getProjects();
+        this.idToDelete = null;
+    }
+
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
+    }
+
+    onCancelDelete() {
+        this.idToDelete = null;
+    }
+
+    onDeleteProject() {
+        this.projectService.deleteProject(this.idToDelete);
+        this.idToDelete = null;
     }
 }

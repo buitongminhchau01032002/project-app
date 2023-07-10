@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ProjectService } from './projects/project.service';
 import { FormsModule } from '@angular/forms';
 import { EndDateValidatorDirective } from './shared/endDateValidator.directive';
+import { ComfirmDeleteComponent } from './shared/comfirm-delete/comfirm-delete.component';
 
 @NgModule({
     declarations: [
@@ -21,6 +22,7 @@ import { EndDateValidatorDirective } from './shared/endDateValidator.directive';
         ProjectCreateComponent,
         ProjectEditComponent,
         EndDateValidatorDirective,
+        ComfirmDeleteComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, FormsModule],
     providers: [ProjectService],
