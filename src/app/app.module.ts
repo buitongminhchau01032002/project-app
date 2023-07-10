@@ -10,6 +10,7 @@ import { ProjectEditComponent } from './projects/project-edit/project-edit.compo
 import { AppRoutingModule } from './app-routing.module';
 import { ProjectService } from './projects/project.service';
 import { FormsModule } from '@angular/forms';
+import { EndDateValidatorDirective } from './shared/endDateValidator.directive';
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { FormsModule } from '@angular/forms';
         ProjectDetailComponent,
         ProjectCreateComponent,
         ProjectEditComponent,
+        EndDateValidatorDirective,
     ],
     imports: [BrowserModule, AppRoutingModule, FormsModule],
     providers: [ProjectService],

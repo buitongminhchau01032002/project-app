@@ -8,11 +8,11 @@ export class ProjectService {
     projectsChanged = new Subject<Project[]>();
     constructor() {}
     getProjects(): Project[] {
-        return this.projects.slice();
+        return this.cloneProjects;
     }
 
     getProject(index: number): Project {
-        return this.projects[index];
+        return this.cloneProjects[index];
     }
 
     addProject(project: Project) {
@@ -33,6 +33,10 @@ export class ProjectService {
     updateStatus(index: number, status: ProjectStatus) {
         this.projects[index].status = status;
         this.notify();
+    }
+
+    private get cloneProjects(): Project[] {
+        return structuredClone(this.projects) as Project[];
     }
 
     private notify() {

@@ -27,8 +27,11 @@
             name="name"
             class="w-full block rounded-md border-0 px-3 py-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-violet-500 outline-none"
             placeholder="Ex: Mobile App Development"
-            [(ngModel)]="project.name"
             required
+            [(ngModel)]="project.name"
+            [ngClass]="{
+                '!ring-red-500': nameCtrl.touched && nameCtrl.invalid
+            }"
             #nameCtrl="ngModel"
         />
         <div class="h-6 text-sm text-red-600">
@@ -47,19 +50,26 @@
                 type="date"
                 id="startDate"
                 name="startDate"
-                class="w-[200px] block rounded-md border-0 px-3 py-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-violet-500 outline-none"
+                class="w-[240px] block rounded-md border-0 px-3 py-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-violet-500 outline-none"
+                required
                 placeholder="Ex: Mobile App Development"
                 [ngModel]="project.startDate | date: 'yyyy-MM-dd'"
                 (ngModelChange)="project.startDate = $event"
-            />
-            <span
-                class="text-sm text-red-600"
                 [ngClass]="{
-                    invisible: true
+                    '!ring-red-500':
+                        startDateCtrl.touched && startDateCtrl.invalid
                 }"
-            >
-                This is error
-            </span>
+                #startDateCtrl="ngModel"
+            />
+            <div class="h-6 text-sm text-red-600">
+                <span
+                    *ngIf="
+                        startDateCtrl.touched && startDateCtrl.errors?.required
+                    "
+                >
+                    Start date is required!
+                </span>
+            </div>
         </div>
         <div class="space-y-2">
             <label for="endDate" class="cursor-pointer font-medium">
@@ -69,19 +79,32 @@
                 type="date"
                 id="endDate"
                 name="endDate"
-                class="w-[200px] block rounded-md border-0 px-3 py-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-violet-500 outline-none"
+                class="w-[240px] block rounded-md border-0 px-3 py-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-violet-500 outline-none"
                 placeholder="Ex: Mobile App Development"
+                required
+                appEndDateValidator="startDate"
                 [ngModel]="project.endDate | date: 'yyyy-MM-dd'"
                 (ngModelChange)="project.endDate = $event"
-            />
-            <span
-                class="text-sm text-red-600"
                 [ngClass]="{
-                    invisible: true
+                    '!ring-red-500': endDateCtrl.touched && endDateCtrl.invalid
                 }"
-            >
-                This is error
-            </span>
+                #endDateCtrl="ngModel"
+            />
+            <div class="h-6 text-sm text-red-600">
+                <span
+                    *ngIf="endDateCtrl.touched && endDateCtrl.errors?.required"
+                >
+                    End date is required!
+                </span>
+                <span
+                    *ngIf="
+                        endDateCtrl.touched &&
+                        endDateCtrl.errors?.afterDateError
+                    "
+                >
+                    End date must be after the start date!
+                </span>
+            </div>
         </div>
         <div class="space-y-2">
             <label for="status" class="cursor-pointer font-medium">
@@ -90,20 +113,21 @@
             <select
                 id="status"
                 name="status"
-                class="w-[200px] block rounded-md border-0 px-3 py-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-violet-500 outline-none"
+                class="w-[240px] block rounded-md border-0 px-3 py-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-violet-500 outline-none"
                 [(ngModel)]="project.status"
             >
                 <option value="Not Started">Not Started</option>
                 <option value="Active">Active</option>
                 <option value="Completed">Completed</option>
-                <option value="Cancel">Cancel</option>
+                <option value="Cancelled">Cancel</option>
             </select>
         </div>
     </div>
 
     <div class="space-y-2 mt-3">
         <label for="description" class="cursor-pointer font-medium">
-            Description
+            <span>Description</span>
+            <span class="font-normal text-gray-600"> (optional)</span>
         </label>
         <textarea
             id="description"
@@ -131,8 +155,12 @@
             Delete project
         </button>
         <button
-            class="px-3 py-2 bg-violet-600 text-white font-semibold text-sm rounded-md hover:bg-violet-500"
+            class="px-3 py-2 bg-violet-600 text-white font-semibold text-sm rounded-md hover:bg-violet-500 disabled:pointer-events-none disabled:opacity-50"
             type="button"
+            [disabled]="
+                nameCtrl.invalid || startDateCtrl.invalid || endDateCtrl.invalid
+            "
+            (click)="onUpdateProject()"
         >
             Save change
         </button>
