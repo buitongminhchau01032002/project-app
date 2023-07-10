@@ -35,7 +35,10 @@ export class ProjectEditComponent implements OnInit {
         console.log(this.project);
     }
 
-    onUpdateProject() {}
+    onUpdateProject() {
+        this.projectService.updateProject(this.id, this.project);
+        this.canGoBack && this.location.back();
+    }
 
     onGoBack() {
         this.canGoBack && this.location.back();

@@ -53,11 +53,11 @@
                     >
                         <tr *ngFor="let project of projects; let i = index">
                             <td
-                                class="max-w-[250px] hover:text-violet-700 font-medium text-gray-700 whitespace-nowrap overflow-hidden text-ellipsis"
+                                class="max-w-[250px] hover:text-violet-700 font-medium text-gray-700 whitespace-nowrap"
                             >
                                 <a
                                     [routerLink]="['/', i]"
-                                    class="cursor-pointer block px-4 py-4"
+                                    class="cursor-pointer block px-4 py-4 overflow-hidden text-ellipsis"
                                 >
                                     {{ project.name }}</a
                                 >
