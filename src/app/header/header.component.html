@@ -4,7 +4,7 @@
     <!-- Left -->
     <div class="flex items-center space-x-4">
         <!-- Logo -->
-        <div class="flex items-center space-x-2">
+        <a class="flex items-center space-x-2" routerLink="/">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -22,15 +22,22 @@
                 />
             </svg>
             <div class="text-xl font-bold">ProMan</div>
-        </div>
+        </a>
 
-        <ul class="flex items-center space-x-2">
+        <!-- <ul class="flex items-center space-x-2">
             <li
                 routerLinkActive="text-violet-500"
                 class="cursor-pointer font-medium"
             >
                 <a class="inline-block" routerLink="/">Project</a>
             </li>
-        </ul>
+        </ul> -->
     </div>
+
+    <a
+        class="px-3 py-2 bg-violet-600 text-white font-semibold text-sm rounded-md hover:bg-violet-500 cursor-pointer"
+        routerLink="/create"
+    >
+        Add project
+    </a>
 </div>

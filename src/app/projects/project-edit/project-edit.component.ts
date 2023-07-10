@@ -31,10 +31,6 @@ export class ProjectEditComponent implements OnInit {
         });
     }
 
-    onSubmit() {
-        console.log(this.project);
-    }
-
     onUpdateProject() {
         this.projectService.updateProject(this.id, this.project);
         this.canGoBack && this.location.back();
