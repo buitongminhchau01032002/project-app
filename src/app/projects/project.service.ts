@@ -60,7 +60,7 @@ const INIT_PROJECTS = [
         'Launching a marketing campaign to increase brand awareness',
         new Date('2023-09-01'),
         new Date('2023-09-30'),
-        ProjectStatus.Cancel,
+        ProjectStatus.Cancelled,
     ),
     new Project(
         'Product Launch',

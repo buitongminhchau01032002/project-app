@@ -1,8 +1,8 @@
 export enum ProjectStatus {
-    Active,
-    NotStarted,
-    Cancel,
-    Completed,
+    Active = 'Active',
+    NotStarted = 'NotStarted',
+    Cancelled = 'Cancelled',
+    Completed = 'Completed',
 }
 
 export class Project {
