@@ -1,1 +1,128 @@
-<p>project-edit works!</p>
+<div class="flex items-center space-x-4">
+    <button (click)="onGoBack()" class="p-2 hover:bg-violet-200 rounded-full">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            class="w-6 h-6"
+        >
+            <path
+                fill-rule="evenodd"
+                d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z"
+                clip-rule="evenodd"
+            />
+        </svg>
+    </button>
+    <h2 class="text-3xl font-bold">Edit project</h2>
+</div>
+
+<form class="py-3">
+    <div class="space-y-2 mt-3">
+        <label for="name" class="cursor-pointer font-medium">
+            Project name
+        </label>
+        <input
+            type="text"
+            id="name"
+            class="w-full block rounded-md border-0 px-3 py-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-violet-500 outline-none"
+            placeholder="Ex: Mobile App Development"
+        />
+        <span
+            class="text-sm text-red-600"
+            [ngClass]="{
+                invisible: true
+            }"
+        >
+            This is error
+        </span>
+    </div>
+
+    <div class="flex space-x-8 mt-3">
+        <div class="space-y-2">
+            <label for="startDate" class="cursor-pointer font-medium">
+                Start date
+            </label>
+            <input
+                type="date"
+                id="startDate"
+                class="w-[200px] block rounded-md border-0 px-3 py-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-violet-500 outline-none"
+                placeholder="Ex: Mobile App Development"
+            />
+            <span
+                class="text-sm text-red-600"
+                [ngClass]="{
+                    invisible: true
+                }"
+            >
+                This is error
+            </span>
+        </div>
+        <div class="space-y-2">
+            <label for="endDate" class="cursor-pointer font-medium">
+                End date
+            </label>
+            <input
+                type="date"
+                id="endDate"
+                class="w-[200px] block rounded-md border-0 px-3 py-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-violet-500 outline-none"
+                placeholder="Ex: Mobile App Development"
+            />
+            <span
+                class="text-sm text-red-600"
+                [ngClass]="{
+                    invisible: true
+                }"
+            >
+                This is error
+            </span>
+        </div>
+        <div class="space-y-2">
+            <label for="status" class="cursor-pointer font-medium">
+                Status
+            </label>
+            <select
+                name="cars"
+                id="cars"
+                class="w-[200px] block rounded-md border-0 px-3 py-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-violet-500 outline-none"
+            >
+                <option value="Not Started">Not Started</option>
+                <option value="Active">Active</option>
+                <option value="Completed">Completed</option>
+                <option value="Cancel">Cancel</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="space-y-2 mt-3">
+        <label for="description" class="cursor-pointer font-medium">
+            Description
+        </label>
+        <textarea
+            id="description"
+            class="w-full block rounded-md border-0 px-3 py-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-violet-500 outline-none"
+            rows="3"
+            placeholder="Ex: Developing a mobile application for iOS and Android platforms"
+        ></textarea>
+        <span
+            class="text-sm text-red-600"
+            [ngClass]="{
+                invisible: true
+            }"
+        >
+            This is error
+        </span>
+    </div>
+
+    <div class="space-x-2 flex py-5 border-t justify-end">
+        <button
+            class="px-3 py-2 bg-red-600 text-white font-semibold text-sm rounded-md hover:bg-red-500"
+        >
+            Delete project
+        </button>
+        <button
+            class="px-3 py-2 bg-violet-600 text-white font-semibold text-sm rounded-md hover:bg-violet-500"
+        >
+            Save change
+        </button>
+    </div>
+</form>
