@@ -24,17 +24,18 @@
         <input
             type="text"
             id="name"
+            name="name"
             class="w-full block rounded-md border-0 px-3 py-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-violet-500 outline-none"
             placeholder="Ex: Mobile App Development"
+            [(ngModel)]="project.name"
+            required
+            #nameCtrl="ngModel"
         />
-        <span
-            class="text-sm text-red-600"
-            [ngClass]="{
-                invisible: true
-            }"
-        >
-            This is error
-        </span>
+        <div class="h-6 text-sm text-red-600">
+            <span *ngIf="nameCtrl.touched && nameCtrl.errors?.required">
+                Project name is required!
+            </span>
+        </div>
     </div>
 
     <div class="flex space-x-8 mt-3">
@@ -45,8 +46,11 @@
             <input
                 type="date"
                 id="startDate"
+                name="startDate"
                 class="w-[200px] block rounded-md border-0 px-3 py-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-violet-500 outline-none"
                 placeholder="Ex: Mobile App Development"
+                [ngModel]="project.startDate | date: 'yyyy-MM-dd'"
+                (ngModelChange)="project.startDate = $event"
             />
             <span
                 class="text-sm text-red-600"
@@ -64,8 +68,11 @@
             <input
                 type="date"
                 id="endDate"
+                name="endDate"
                 class="w-[200px] block rounded-md border-0 px-3 py-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-violet-500 outline-none"
                 placeholder="Ex: Mobile App Development"
+                [ngModel]="project.endDate | date: 'yyyy-MM-dd'"
+                (ngModelChange)="project.endDate = $event"
             />
             <span
                 class="text-sm text-red-600"
@@ -81,9 +88,10 @@
                 Status
             </label>
             <select
-                name="cars"
-                id="cars"
+                id="status"
+                name="status"
                 class="w-[200px] block rounded-md border-0 px-3 py-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-violet-500 outline-none"
+                [(ngModel)]="project.status"
             >
                 <option value="Not Started">Not Started</option>
                 <option value="Active">Active</option>
@@ -99,9 +107,11 @@
         </label>
         <textarea
             id="description"
+            name="description"
             class="w-full block rounded-md border-0 px-3 py-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-violet-500 outline-none"
             rows="3"
             placeholder="Ex: Developing a mobile application for iOS and Android platforms"
+            [(ngModel)]="project.description"
         ></textarea>
         <span
             class="text-sm text-red-600"
@@ -116,11 +126,13 @@
     <div class="space-x-2 flex py-5 border-t justify-end">
         <button
             class="px-3 py-2 bg-red-600 text-white font-semibold text-sm rounded-md hover:bg-red-500"
+            type="button"
         >
             Delete project
         </button>
         <button
             class="px-3 py-2 bg-violet-600 text-white font-semibold text-sm rounded-md hover:bg-violet-500"
+            type="button"
         >
             Save change
         </button>

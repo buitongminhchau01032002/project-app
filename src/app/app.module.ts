@@ -9,6 +9,7 @@ import { ProjectCreateComponent } from './projects/project-create/project-create
 import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProjectService } from './projects/project.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,7 @@ import { ProjectService } from './projects/project.service';
         ProjectCreateComponent,
         ProjectEditComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule],
+    imports: [BrowserModule, AppRoutingModule, FormsModule],
     providers: [ProjectService],
     bootstrap: [AppComponent],
 })
